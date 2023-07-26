@@ -45,5 +45,16 @@ func CreateTable(schema string) {
 	} else {
 		fmt.Println("Table created successfully")
 	}
+}
 
+func ExistsTable(nameTable string) bool {
+	sql := fmt.Sprintf("SHOW TABLES LIKE '%s'", nameTable)
+	rows, _ := db.Query(sql)
+	if rows.Next() {
+		fmt.Println("Table exists")
+		return true
+	} else {
+		fmt.Println("Table not exists")
+		return false
+	}
 }
