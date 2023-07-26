@@ -9,3 +9,13 @@ const Schema = `
 		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 	);
 `
+
+//Insert data
+
+// Create type date to use in insert en table users
+type User struct {
+	Id       int
+	Name     string
+	Password string
+	Email    string
+}
