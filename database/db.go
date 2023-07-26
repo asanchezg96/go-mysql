@@ -41,7 +41,7 @@ func Close() {
 
 func CreateTable(schema string) {
 	if !ExistsTable("users") {
-		if _, err := db.Exec(schema); err != nil {
+		if _, err := Exec(schema); err != nil {
 			panic(err)
 		} else {
 			fmt.Println("Table created successfully")
@@ -61,4 +61,13 @@ func ExistsTable(nameTable string) bool {
 		fmt.Println("Table not exists")
 		return false
 	}
+}
+
+// Polymorphism method Execute
+func Exec(query string, args ...interface{}) (sql.Result, error) {
+	result, err := db.Exec(query, args)
+	if err != nil {
+		panic(err)
+	}
+	return result, err
 }
