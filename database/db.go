@@ -40,10 +40,14 @@ func Close() {
 }
 
 func CreateTable(schema string) {
-	if _, err := db.Exec(schema); err != nil {
-		panic(err)
+	if !ExistsTable("users") {
+		if _, err := db.Exec(schema); err != nil {
+			panic(err)
+		} else {
+			fmt.Println("Table created successfully")
+		}
 	} else {
-		fmt.Println("Table created successfully")
+		fmt.Println("Table already exists")
 	}
 }
 
