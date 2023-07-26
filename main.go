@@ -15,7 +15,8 @@ func main() {
 	//database.ExistsTable("users")
 
 	//create new user
-	user := models.NewUser("Jhon", "123456", "jhon@gmai.com")
+	//user := models.NewUser("Jhon", "123456", "jhon@gmai.com")
+	user := models.CreateUser("Tony", "pass", "tony@gmail.com")
 	fmt.Println(user)
 	database.Close()
 }
