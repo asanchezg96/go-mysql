@@ -53,7 +53,7 @@ func CreateTable(schema string) {
 
 func ExistsTable(nameTable string) bool {
 	sql := fmt.Sprintf("SHOW TABLES LIKE '%s'", nameTable)
-	rows, _ := db.Query(sql)
+	rows, _ := Query(sql)
 	if rows.Next() {
 		fmt.Println("Table exists")
 		return true
@@ -65,9 +65,19 @@ func ExistsTable(nameTable string) bool {
 
 // Polymorphism method Execute
 func Exec(query string, args ...interface{}) (sql.Result, error) {
-	result, err := db.Exec(query, args)
+	result, err := db.Exec(query, args...)
 	if err != nil {
 		panic(err)
 	}
 	return result, err
+}
+
+// Polymorphism method Query
+func Query(query string, args ...interface{}) (*sql.Rows, error) {
+	rows, err := db.Query(query, args...)
+	if err != nil {
+		panic(err)
+	}
+	return rows, err
+
 }
