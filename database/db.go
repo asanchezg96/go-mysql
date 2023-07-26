@@ -30,3 +30,11 @@ func Ping() {
 		fmt.Println("Database conection Success")
 	}
 }
+
+func Close() {
+	if err := db.Close(); err != nil {
+		panic(err)
+	} else {
+		fmt.Println("Database Close Success")
+	}
+}
