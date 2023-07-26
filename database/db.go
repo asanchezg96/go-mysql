@@ -22,3 +22,11 @@ func Connect() {
 	db = conect
 	fmt.Println("Database Open  Success")
 }
+
+func Ping() {
+	if err := db.Ping(); err != nil {
+		panic(err)
+	} else {
+		fmt.Println("Database conection Success")
+	}
+}
