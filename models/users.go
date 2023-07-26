@@ -19,3 +19,14 @@ type User struct {
 	Password string
 	Email    string
 }
+
+//Create constructor for nuew user
+
+func NewUser(name, password, email string) *User {
+	user := &User{
+		Name:     name,
+		Password: password,
+		Email:    email,
+	}
+	return user
+}
