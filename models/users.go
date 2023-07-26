@@ -22,6 +22,9 @@ type User struct {
 	Email    string
 }
 
+// List data
+type Users []User
+
 //Create constructor for nuew user
 
 func NewUser(name, password, email string) *User {
@@ -45,4 +48,17 @@ func (user *User) insert() {
 	sql := "INSERT INTO users SET name= ?, password=?, email=?"
 	result, _ := database.Exec(sql, user.Name, user.Password, user.Email)
 	user.Id, _ = result.LastInsertId()
+}
+
+// List data from table users
+func ListUsers() Users {
+	sql := "SELECT id, name, password, email FROM users"
+	users := Users{}
+	rows, _ := database.Query(sql)
+	for rows.Next() {
+		user := User{}
+		rows.Scan(&user.Id, &user.Name, &user.Password, &user.Email)
+		users = append(users, user)
+	}
+	return users
 }
