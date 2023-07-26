@@ -9,4 +9,5 @@ func main() {
 	fmt.Println("GO-MYSQL-CRUD")
 	database.Connect()
 	database.Ping()
+	database.Close()
 }
