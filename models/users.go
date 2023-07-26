@@ -16,7 +16,7 @@ const Schema = `
 
 // Create type date to use in insert en table users
 type User struct {
-	Id       int
+	Id       int64
 	Name     string
 	Password string
 	Email    string
@@ -43,8 +43,6 @@ func CreateUser(name, password, email string) *User {
 // Create method to insert data in table users
 func (user *User) insert() {
 	sql := "INSERT INTO users SET name= ?, password=?, email=?"
-	_, err := database.Exec(sql, user.Name, user.Password, user.Email)
-	if err != nil {
-		panic(err)
-	}
+	result, _ := database.Exec(sql, user.Name, user.Password, user.Email)
+	user.Id, _ = result.LastInsertId()
 }
