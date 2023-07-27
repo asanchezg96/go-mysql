@@ -97,3 +97,17 @@ func TruncateTable(tableName string) {
 	}
 
 }
+
+func DropTable(tableName string) {
+	sql := fmt.Sprintf("DROP TABLE %s", tableName)
+	if ExistsTable(tableName) {
+		if _, err := Exec(sql); err != nil {
+			fmt.Println(err)
+		} else {
+			fmt.Println("Table deleted")
+		}
+	} else {
+		fmt.Println("Table not exists")
+	}
+
+}
