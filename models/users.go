@@ -69,6 +69,12 @@ func (user *User) update() {
 	database.Exec(sql, user.Name, user.Password, user.Email, user.Id)
 }
 
+// Delete
+func (user *User) Delete() {
+	sql := "DELETE FROM users WHERE id=?"
+	database.Exec(sql, user.Id)
+}
+
 func (user *User) Save() {
 	if user.Id == 0 {
 		user.insert()
