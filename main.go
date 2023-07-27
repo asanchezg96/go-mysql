@@ -28,5 +28,8 @@ func main() {
 	user2.Save()
 	fmt.Println(models.ListUsers())
 
+	//Droped table
+	database.DropTable("users")
+	//database.DropTable("users")
 	database.Close()
 }
