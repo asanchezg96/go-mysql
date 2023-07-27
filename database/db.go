@@ -81,3 +81,19 @@ func Query(query string, args ...interface{}) (*sql.Rows, error) {
 	return rows, err
 
 }
+
+//Truncate table
+
+func TruncateTable(tableName string) {
+	if ExistsTable(tableName) {
+		sql := fmt.Sprintf("TRUNCATE TABLE %s", tableName)
+		if _, err := Exec(sql); err != nil {
+			panic(err)
+		} else {
+			fmt.Println("Table truncate successfully")
+		}
+	} else {
+		fmt.Println("Table not exists")
+	}
+
+}
