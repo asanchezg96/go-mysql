@@ -24,5 +24,9 @@ func main() {
 	user2 := models.CreateUser("Jhon", "pass", "jhon@gmail.com")
 	fmt.Println(user2)
 	fmt.Println(models.ListUsers())
+	user2.Name = "Jhonatan"
+	user2.Save()
+	fmt.Println(models.ListUsers())
+
 	database.Close()
 }
