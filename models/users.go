@@ -39,7 +39,7 @@ func NewUser(name, password, email string) *User {
 // Create function to create user in tabble users
 func CreateUser(name, password, email string) *User {
 	user := NewUser(name, password, email)
-	user.insert()
+	user.Save()
 	return user
 }
 
@@ -61,4 +61,18 @@ func ListUsers() Users {
 		users = append(users, user)
 	}
 	return users
+}
+
+// Update data
+func (user *User) update() {
+	sql := "UPDATE users SET name=?, password=?, email=? WHERE id=?"
+	database.Exec(sql, user.Name, user.Password, user.Email, user.Id)
+}
+
+func (user *User) Save() {
+	if user.Id == 0 {
+		user.insert()
+	} else {
+		user.update()
+	}
 }
