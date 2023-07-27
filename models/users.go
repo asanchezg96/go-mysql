@@ -69,6 +69,17 @@ func (user *User) update() {
 	database.Exec(sql, user.Name, user.Password, user.Email, user.Id)
 }
 
+// List data from table users
+func GetUsersById(id int) *User {
+	sql := "SELECT id, name, password, email FROM users WHERE id=?"
+	user := NewUser("", "", "")
+	rows, _ := database.Query(sql, id)
+	for rows.Next() {
+		rows.Scan(&user.Id, &user.Name, &user.Password, &user.Email)
+	}
+	return user
+}
+
 // Delete
 func (user *User) Delete() {
 	sql := "DELETE FROM users WHERE id=?"
