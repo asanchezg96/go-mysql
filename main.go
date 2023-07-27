@@ -28,6 +28,14 @@ func main() {
 	user2.Save()
 	fmt.Println(models.ListUsers())
 
+	//Eliminate user
+	user3 := models.CreateUser("Eliminar", "pass", "eliminar@gmail.com")
+	fmt.Println(user3)
+	fmt.Println(models.ListUsers())
+	models.GetUsersById(1)
+	user3.Delete()
+	fmt.Println(models.ListUsers())
+
 	//Droped table
 	database.DropTable("users")
 	//database.DropTable("users")
